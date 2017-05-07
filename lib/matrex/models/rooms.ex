@@ -41,11 +41,11 @@ defmodule Matrex.Models.Rooms do
   end
 
 
-  @spec fetch_state_content(This.t, Identifier.room, RoomEvent.key, Identifier.user)
+  @spec fetch_state_content(This.t, Identifier.room, String.t, String.t, Identifier.user)
     :: {:ok, RoomEvent.Content.t, This.t} | {:error, atom}
-  def fetch_state_content(this, room_id, event_key, user) do
+  def fetch_state_content(this, room_id, event_type, state_key, user) do
     with {:ok, room} <- fetch_room(this, room_id),
-         {:ok, content, room} <- Room.fetch_state_content(room, event_key, user)
+         {:ok, content, room} <- Room.fetch_state_content(room, event_type, state_key, user)
     do
       {:ok, content, Map.put(this, room_id, room)}
     end

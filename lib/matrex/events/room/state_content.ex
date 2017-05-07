@@ -6,6 +6,8 @@ defmodule Matrex.Events.Room.StateContent do
 
   @type key :: {String.t, String.t}
 
+  import Matrex.Validation
+
   @type t :: %This{
     content: map,
     prev_content: nil | map,
